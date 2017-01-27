@@ -6,6 +6,11 @@ if ! ls /etc/ssh/ssh_host_* 1> /dev/null 2>&1; then
     ssh-keygen -A
 fi
 
+if [ -n "$AUTHORIZED_KEYS" ]; then
+    echo "$AUTHORIZED_KEYS" >> /root/.ssh/authorized_keys;
+    chmod 600 /root/.ssh/authorized_keys;
+fi
+
 stop() {
     echo "Received SIGINT or SIGTERM. Shutting down $DAEMON"
     pid=$(cat /var/run/$DAEMON/$DAEMON.pid)
