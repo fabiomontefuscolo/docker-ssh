@@ -40,7 +40,7 @@ before_script:
   - chmod 600 ~/.ssh/id_rsa
   - ssh-add ~/.ssh/id_rsa
 
-deploy
+deploy:
   script:
     - rsync -av -e 'ssh -o StrictHostKeyChecking=no' html/ remoteuser@remoteserver.com:/var/www/html/
     
